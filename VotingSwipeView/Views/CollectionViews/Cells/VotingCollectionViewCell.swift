@@ -88,7 +88,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
       self.currentSettledSide = self.currentViewPosition()
       switch self.currentSettledSide {
       case .left:
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
           self.homeView.alpha = 1
           self.awayView.alpha = 0
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
@@ -97,10 +97,10 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: 1)
           self.panGestureView.layoutIfNeeded()
-        }
+        }, completion: nil)
         break
       case .neutral:
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
           self.homeView.alpha = 1
           self.awayView.alpha = 1
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
@@ -109,10 +109,10 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: self.lowestHeightRatio)
           self.panGestureView.layoutIfNeeded()
-        }
+        }, completion: nil)
         break
       case .right:
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
           self.homeView.alpha = 0
           self.awayView.alpha = 1
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: self.lowestWidthRatio)
@@ -121,7 +121,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultLow
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: 1)
           self.panGestureView.layoutIfNeeded()
-        }
+        }, completion: nil)
         break
       }
       break
