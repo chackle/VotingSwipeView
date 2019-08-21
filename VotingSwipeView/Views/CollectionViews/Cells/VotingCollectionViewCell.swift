@@ -14,8 +14,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
   private let lowestHeightRatio = CGFloat(0.25)
   
   @IBOutlet weak var panGestureView: UIView!
-  @IBOutlet weak var homeView: UIView!
-  @IBOutlet weak var awayView: UIView!
+  @IBOutlet weak var homeView: TrapeziumView!
+  @IBOutlet weak var awayView: TrapeziumView!
   @IBOutlet weak var leftSideWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var rightSideWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var centerViewHeightConstraint: NSLayoutConstraint!
@@ -27,6 +27,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
   func setup() {
     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(VotingCollectionViewCell.handlePan(sender:)))
     self.panGestureView.addGestureRecognizer(gestureRecognizer)
+    self.homeView.setup(withAngledSide: .right, andFillColor: .yellow)
+    self.awayView.setup(withAngledSide: .left, andFillColor: .purple)
   }
   
   @objc func handlePan(sender: UIPanGestureRecognizer) {
@@ -38,7 +40,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
     let sideRatio = (1 - middleRatio) / 2
     let widthThreshold = self.panGestureView.bounds.width / 3
     let translation = sender.translation(in: self.panGestureView)
-    var xTranslation = translation.x
+    var xTranslation = translation.x * 2
     switch settledSide {
     case .left:
       xTranslation = xTranslation + (widthThreshold * 3 - widthThreshold * sideRatio)
@@ -53,10 +55,15 @@ class VotingCollectionViewCell: UICollectionViewCell {
     let absoluteXTranslation = abs(xTranslation)
     let expansionRatio = 1 - (absoluteXTranslation / (self.pageWidth + self.lowestWidthRatio * self.pageWidth))
     let heightExpansionRatio = self.lowestHeightRatio + (absoluteXTranslation / self.pageWidth)
+    let midXPoint = self.awayView.frame.origin.x
+    let homeAlpha = (midXPoint / (self.pageWidth / 2)) - (1 - (midXPoint - (midXPoint * self.lowestWidthRatio)) / (self.pageWidth - self.pageWidth * self.lowestWidthRatio))
+    let awayAlpha = 1 - ((midXPoint / (self.pageWidth / 2)) - (1 - (midXPoint - (midXPoint * self.lowestWidthRatio)) / (self.pageWidth - self.pageWidth * self.lowestWidthRatio)) * 2)
     switch sender.state {
     case .changed:
       switch direction {
       case .left:
+        self.homeView.alpha = homeAlpha
+        self.awayView.alpha = 1
         self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: expansionRatio)
         self.leftSideWidthConstraint.priority = UILayoutPriority.defaultHigh
         self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: 1)
@@ -64,6 +71,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
         self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: heightExpansionRatio)
         break
       case .right:
+        self.homeView.alpha = 1
+        self.awayView.alpha = awayAlpha
         self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
         self.leftSideWidthConstraint.priority = UILayoutPriority.defaultLow
         self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: expansionRatio)
@@ -79,6 +88,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
       switch self.currentSettledSide {
       case .left:
         UIView.animate(withDuration: 0.3) {
+          self.homeView.alpha = 1
+          self.awayView.alpha = 0
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
           self.leftSideWidthConstraint.priority = UILayoutPriority.defaultLow
           self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: self.lowestWidthRatio)
@@ -89,6 +100,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
         break
       case .neutral:
         UIView.animate(withDuration: 0.3) {
+          self.homeView.alpha = 1
+          self.awayView.alpha = 1
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
           self.leftSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: 1)
@@ -99,6 +112,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
         break
       case .right:
         UIView.animate(withDuration: 0.3) {
+          self.homeView.alpha = 0
+          self.awayView.alpha = 1
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: self.lowestWidthRatio)
           self.leftSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: 1)
@@ -126,12 +141,6 @@ class VotingCollectionViewCell: UICollectionViewCell {
     } else {
       return Direction.neutral
     }
-  }
-  
-  enum Direction {
-    case left
-    case right
-    case neutral
   }
 }
 
@@ -162,5 +171,11 @@ extension NSLayoutConstraint {
     NSLayoutConstraint.activate([newConstraint])
     return newConstraint
   }
+}
+
+enum Direction {
+  case left
+  case right
+  case neutral
 }
 

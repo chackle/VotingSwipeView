@@ -15,6 +15,7 @@
 		5410526D230C10600046FB64 /* VotingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410526C230C10600046FB64 /* VotingCollectionView.swift */; };
 		54105271230C108F0046FB64 /* VotingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */; };
 		54105272230C108F0046FB64 /* VotingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */; };
+		54105274230D59CE0046FB64 /* TrapeziumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54105273230D59CE0046FB64 /* TrapeziumView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		5410526C230C10600046FB64 /* VotingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingCollectionView.swift; sourceTree = "<group>"; };
 		5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingCollectionViewCell.swift; sourceTree = "<group>"; };
 		54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VotingCollectionViewCell.xib; sourceTree = "<group>"; };
+		54105273230D59CE0046FB64 /* TrapeziumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrapeziumView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				5410526B230C104C0046FB64 /* CollectionViews */,
+				54105273230D59CE0046FB64 /* TrapeziumView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				54105259230C0FBD0046FB64 /* AppDelegate.swift in Sources */,
 				5410526D230C10600046FB64 /* VotingCollectionView.swift in Sources */,
 				54105271230C108F0046FB64 /* VotingCollectionViewCell.swift in Sources */,
+				54105274230D59CE0046FB64 /* TrapeziumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
