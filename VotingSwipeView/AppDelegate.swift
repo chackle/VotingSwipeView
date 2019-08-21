@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  VotingSwipeView
+//  VotingView
 //
-//  Created by Michael Green on 20/08/2019.
-//  Copyright © 2019 Michael Green. All rights reserved.
+//  Created by Fabricio Oliveira on 2019-08-19.
+//  Copyright © 2019 Strafe AB. All rights reserved.
 //
 
 import UIKit

@@ -12,10 +12,7 @@
 		5410525E230C0FBD0046FB64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5410525C230C0FBD0046FB64 /* Main.storyboard */; };
 		54105260230C0FBF0046FB64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410525F230C0FBF0046FB64 /* Assets.xcassets */; };
 		54105263230C0FBF0046FB64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54105261230C0FBF0046FB64 /* LaunchScreen.storyboard */; };
-		5410526D230C10600046FB64 /* VotingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410526C230C10600046FB64 /* VotingCollectionView.swift */; };
-		54105271230C108F0046FB64 /* VotingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */; };
-		54105272230C108F0046FB64 /* VotingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */; };
-		7FFDEFE1230D40CA00312407 /* TrapeziumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEFE0230D40CA00312407 /* TrapeziumView.swift */; };
+		7FFDEFE3230D43C500312407 /* TrapeziumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEFE2230D43C500312407 /* TrapeziumView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +23,7 @@
 		5410525F230C0FBF0046FB64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54105262230C0FBF0046FB64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54105264230C0FBF0046FB64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5410526C230C10600046FB64 /* VotingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingCollectionView.swift; sourceTree = "<group>"; };
-		5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingCollectionViewCell.swift; sourceTree = "<group>"; };
-		54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VotingCollectionViewCell.xib; sourceTree = "<group>"; };
-		7FFDEFE0230D40CA00312407 /* TrapeziumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrapeziumView.swift; sourceTree = "<group>"; };
+		7FFDEFE2230D43C500312407 /* TrapeziumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapeziumView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +56,7 @@
 		54105257230C0FBD0046FB64 /* VotingSwipeView */ = {
 			isa = PBXGroup;
 			children = (
-				5410526A230C10430046FB64 /* Views */,
+				7FFDEFE2230D43C500312407 /* TrapeziumView.swift */,
 				54105258230C0FBD0046FB64 /* AppDelegate.swift */,
 				5410525A230C0FBD0046FB64 /* ViewController.swift */,
 				5410525C230C0FBD0046FB64 /* Main.storyboard */,
@@ -71,33 +65,6 @@
 				54105264230C0FBF0046FB64 /* Info.plist */,
 			);
 			path = VotingSwipeView;
-			sourceTree = "<group>";
-		};
-		5410526A230C10430046FB64 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5410526B230C104C0046FB64 /* CollectionViews */,
-				7FFDEFE0230D40CA00312407 /* TrapeziumView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5410526B230C104C0046FB64 /* CollectionViews */ = {
-			isa = PBXGroup;
-			children = (
-				5410526E230C10750046FB64 /* Cells */,
-				5410526C230C10600046FB64 /* VotingCollectionView.swift */,
-			);
-			path = CollectionViews;
-			sourceTree = "<group>";
-		};
-		5410526E230C10750046FB64 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */,
-				54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +128,6 @@
 				54105263230C0FBF0046FB64 /* LaunchScreen.storyboard in Resources */,
 				54105260230C0FBF0046FB64 /* Assets.xcassets in Resources */,
 				5410525E230C0FBD0046FB64 /* Main.storyboard in Resources */,
-				54105272230C108F0046FB64 /* VotingCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,10 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5410525B230C0FBD0046FB64 /* ViewController.swift in Sources */,
+				7FFDEFE3230D43C500312407 /* TrapeziumView.swift in Sources */,
 				54105259230C0FBD0046FB64 /* AppDelegate.swift in Sources */,
-				5410526D230C10600046FB64 /* VotingCollectionView.swift in Sources */,
-				54105271230C108F0046FB64 /* VotingCollectionViewCell.swift in Sources */,
-				7FFDEFE1230D40CA00312407 /* TrapeziumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

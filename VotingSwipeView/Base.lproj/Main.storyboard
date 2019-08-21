@@ -13,47 +13,80 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="VotingSwipeView" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VotingView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LNe-Nn-akz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTu-oa-hkV" customClass="VotingCollectionView" customModule="VotingSwipeView" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Ge-hl-dIB">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="t2o-6P-NL9">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cju-YE-gh2">
+                                <rect key="frame" x="0.0" y="336" width="414" height="224"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpS-ti-uIL" customClass="TrapeziumView" customModule="VotingView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="224"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="directionValue">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <real key="value" value="65"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMI-zj-2Q5" customClass="TrapeziumView" customModule="VotingView" customModuleProvider="target">
+                                        <rect key="frame" x="196" y="0.0" width="218" height="224"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <real key="value" value="65"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="directionValue">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="0.33333333329999998" green="0.53725490200000003" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="TMI-zj-2Q5" secondAttribute="bottom" id="64E-0Q-OWI"/>
+                                    <constraint firstItem="bpS-ti-uIL" firstAttribute="leading" secondItem="cju-YE-gh2" secondAttribute="leading" id="EZC-S1-uA6"/>
+                                    <constraint firstItem="bpS-ti-uIL" firstAttribute="width" secondItem="TMI-zj-2Q5" secondAttribute="width" priority="750" id="N07-fe-fWd"/>
+                                    <constraint firstItem="TMI-zj-2Q5" firstAttribute="top" secondItem="cju-YE-gh2" secondAttribute="top" id="NAz-Bb-ZoV"/>
+                                    <constraint firstItem="TMI-zj-2Q5" firstAttribute="leading" secondItem="bpS-ti-uIL" secondAttribute="trailing" multiplier="0.9" id="Nnh-L8-qcB"/>
+                                    <constraint firstAttribute="trailing" secondItem="TMI-zj-2Q5" secondAttribute="trailing" id="bFe-IX-12J"/>
+                                    <constraint firstItem="bpS-ti-uIL" firstAttribute="top" secondItem="cju-YE-gh2" secondAttribute="top" id="duY-qK-GyK"/>
+                                    <constraint firstAttribute="bottom" secondItem="bpS-ti-uIL" secondAttribute="bottom" id="js9-cl-bHR"/>
+                                    <constraint firstItem="TMI-zj-2Q5" firstAttribute="width" secondItem="bpS-ti-uIL" secondAttribute="width" priority="750" id="zUS-OC-uWj"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="OTu-oa-hkV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Dz-Fl-Ysj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OTu-oa-hkV" secondAttribute="trailing" id="eKk-RC-Iv0"/>
-                            <constraint firstItem="OTu-oa-hkV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="n5s-J8-eDr"/>
-                            <constraint firstAttribute="bottom" secondItem="OTu-oa-hkV" secondAttribute="bottom" id="xnZ-ZJ-rAE"/>
+                            <constraint firstItem="cju-YE-gh2" firstAttribute="height" secondItem="LNe-Nn-akz" secondAttribute="height" multiplier="0.25" id="L55-IU-mDQ"/>
+                            <constraint firstAttribute="trailing" secondItem="cju-YE-gh2" secondAttribute="trailing" id="bBT-fj-nZ7"/>
+                            <constraint firstItem="cju-YE-gh2" firstAttribute="leading" secondItem="LNe-Nn-akz" secondAttribute="leading" id="f2X-o1-59K"/>
+                            <constraint firstItem="cju-YE-gh2" firstAttribute="centerY" secondItem="LNe-Nn-akz" secondAttribute="centerY" id="gD3-RY-BCd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="olB-kc-MCs"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="OTu-oa-hkV" id="7vD-8J-mHV"/>
+                        <outlet property="awayView" destination="TMI-zj-2Q5" id="h4M-Bk-ucq"/>
+                        <outlet property="centerViewHeightConstraint" destination="L55-IU-mDQ" id="Qiw-wE-56D"/>
+                        <outlet property="homeView" destination="bpS-ti-uIL" id="rm6-mH-fIx"/>
+                        <outlet property="leftSideWidthConstraint" destination="N07-fe-fWd" id="3hA-bS-txU"/>
+                        <outlet property="panGestureView" destination="LNe-Nn-akz" id="qpu-1E-uYu"/>
+                        <outlet property="rightSideWidthConstraint" destination="zUS-OC-uWj" id="yWg-I6-ivh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="120.53571428571428"/>
         </scene>
     </scenes>
 </document>
