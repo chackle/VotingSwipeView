@@ -25,16 +25,38 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vh7-hy-hCT">
                                 <rect key="frame" x="0.0" y="144.5" width="381" height="96"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PT-vW-ann">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PT-vW-ann" customClass="TrapeziumView" customModule="VotingSwipeView" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="190.5" height="96"/>
-                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <real key="value" value="60"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="directionValue">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdP-Rm-CbT">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdP-Rm-CbT" customClass="TrapeziumView" customModule="VotingSwipeView" customModuleProvider="target">
                                         <rect key="frame" x="190.5" y="0.0" width="190.5" height="96"/>
-                                        <color key="backgroundColor" red="0.95686274510000002" green="0.1108837662" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="1" green="0.66666666669999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <real key="value" value="60"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="directionValue">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="sdP-Rm-CbT" firstAttribute="leading" secondItem="6PT-vW-ann" secondAttribute="trailing" id="JFI-Mf-do7"/>
                                     <constraint firstItem="6PT-vW-ann" firstAttribute="top" secondItem="Vh7-hy-hCT" secondAttribute="top" id="L0s-Kb-kgg"/>
@@ -48,7 +70,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.43921568630000002" green="0.85490196080000003" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vh7-hy-hCT" firstAttribute="height" secondItem="LPM-aQ-b0C" secondAttribute="height" multiplier="0.25" id="6EF-dM-pOu"/>
                             <constraint firstItem="Vh7-hy-hCT" firstAttribute="centerY" secondItem="LPM-aQ-b0C" secondAttribute="centerY" id="Fn4-k1-weD"/>

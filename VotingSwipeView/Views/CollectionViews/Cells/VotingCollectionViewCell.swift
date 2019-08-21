@@ -14,8 +14,8 @@ class VotingCollectionViewCell: UICollectionViewCell {
   private let lowestHeightRatio = CGFloat(0.25)
   
   @IBOutlet weak var panGestureView: UIView!
-  @IBOutlet weak var homeView: UIView!
-  @IBOutlet weak var awayView: UIView!
+  @IBOutlet weak var homeView: TrapeziumView!
+  @IBOutlet weak var awayView: TrapeziumView!
   @IBOutlet weak var leftSideWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var rightSideWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var centerViewHeightConstraint: NSLayoutConstraint!
