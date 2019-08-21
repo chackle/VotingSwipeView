@@ -19,6 +19,7 @@ class ViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    self.collectionView.contentInset = UIEdgeInsets(top: -48, left: 0, bottom: -20, right: 0)
     self.collectionView.setup()
   }
 }

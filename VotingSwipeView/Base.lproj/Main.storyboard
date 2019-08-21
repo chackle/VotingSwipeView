@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="VotingSwipeView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="VotingSwipeView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,12 +42,13 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="OTu-oa-hkV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Dz-Fl-Ysj"/>
+                            <constraint firstItem="OTu-oa-hkV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NiJ-K3-YGs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OTu-oa-hkV" secondAttribute="trailing" id="eKk-RC-Iv0"/>
-                            <constraint firstItem="OTu-oa-hkV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="n5s-J8-eDr"/>
                             <constraint firstAttribute="bottom" secondItem="OTu-oa-hkV" secondAttribute="bottom" id="xnZ-ZJ-rAE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="collectionView" destination="OTu-oa-hkV" id="7vD-8J-mHV"/>
                     </connections>

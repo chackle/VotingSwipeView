@@ -27,8 +27,9 @@ class VotingCollectionViewCell: UICollectionViewCell {
   func setup() {
     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(VotingCollectionViewCell.handlePan(sender:)))
     self.panGestureView.addGestureRecognizer(gestureRecognizer)
-    self.homeView.setup(withAngledSide: .right, andFillColor: .yellow)
-    self.awayView.setup(withAngledSide: .left, andFillColor: .purple)
+    let color = UIColor(red: 255/255.0, green: 155/255.0, blue: 0, alpha: 1.0)
+    self.homeView.setup(withAngledSide: .right, andFillColor: color)
+    self.awayView.setup(withAngledSide: .left, andFillColor: color)
   }
   
   @objc func handlePan(sender: UIPanGestureRecognizer) {
