@@ -14,5 +14,6 @@ class AdaptVotingPointsCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    labelPoints.text = "99999"
   }
 }

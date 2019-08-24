@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AdaptVotingPointsCell" id="hr1-Ub-Az2" customClass="AdaptVotingPointsCell" customModule="AdaptVotingGearView" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AdaptVotingPointsCell" id="hr1-Ub-Az2" customClass="AdaptVotingPointsCell" customModule="VotingSwipeView" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYu-85-Zub">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,9 +34,11 @@
                 <constraint firstItem="mYu-85-Zub" firstAttribute="top" secondItem="hr1-Ub-Az2" secondAttribute="top" id="iRk-Ke-hmf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="pMh-7K-4LH"/>
+            <size key="customSize" width="110" height="50"/>
             <connections>
                 <outlet property="labelPoints" destination="mYu-85-Zub" id="ccI-pq-wRS"/>
             </connections>
+            <point key="canvasLocation" x="149.27536231884059" y="42.857142857142854"/>
         </collectionViewCell>
     </objects>
 </document>
