@@ -42,29 +42,34 @@ class AdaptVotingGearView: UIView {
   @IBOutlet weak var constraintCollectionGearLeading: NSLayoutConstraint!
   @IBOutlet weak var constraintCollectionGearHeight: NSLayoutConstraint!
   
-  //@IBOutlet weak var constraintCollectionHome: NSLayoutConstraint!
-  //@IBOutlet weak var constraintCollectionAway: NSLayoutConstraint!
-  
   @IBOutlet weak var constraintTie: NSLayoutConstraint!
   @IBOutlet weak var constraintRatioHomeToAway: NSLayoutConstraint!
   @IBOutlet weak var constraintRatioAwayToHome: NSLayoutConstraint!
   
+  @IBOutlet weak var constraintHomeHeight: NSLayoutConstraint!
+  @IBOutlet weak var viewGear: UIView!
+  @IBOutlet weak var viewAway: UIView!
+  @IBOutlet weak var viewHome: UIView!
+  @IBOutlet weak var viewTie: UIView!
+  
   private var votingMode: EnumVotingMode = .none {
     didSet {
-      self.animateToVoting(mode: self.votingMode)
+      animateToVoting(mode: self.votingMode)
     }
   }
   
   private var canTie = false
   private var expansionRatio: CGFloat = 1.0
   
-
+  private var heightConstant: CGFloat {
+    return 1 + ((1 - expansionRatio) * bigSizeRatio)
+  }
   private var tieNormalSizeConstant: CGFloat {
-    return canTie ? self.bounds.width * self.normalSizeRatio: 0.0
+    return canTie ? bounds.width * normalSizeRatio: 0.0
   }
   
   private var tieSmallSizeConstant: CGFloat {
-    return canTie ? self.bounds.width * self.smallSizeRatio: 0.0
+    return canTie ? bounds.width * smallSizeRatio: 0.0
   }
   
   private var tieBigSizeConstant: CGFloat {
@@ -72,7 +77,7 @@ class AdaptVotingGearView: UIView {
   }
   
   private var bigSizeConstant: CGFloat {
-    return self.bounds.width * self.bigSizeRatio
+    return bounds.width * bigSizeRatio
   }
   
   private var normalSizeRatio: CGFloat  {
@@ -80,7 +85,7 @@ class AdaptVotingGearView: UIView {
   }
   
   private var bigSizeRatio: CGFloat  {
-    return (canTie ? 0.45:0.80)
+    return (canTie ? 0.45:0.75)
   }
   
   private var smallSizeRatio: CGFloat {
@@ -88,7 +93,7 @@ class AdaptVotingGearView: UIView {
     return ((1.0 - bigSizeRatio) * divider)
   }
   
-  private let minimumRatio: CGFloat = 0.3
+  private let minimumRatio: CGFloat = 0.25
   private let maximumRatio: CGFloat = 1.0
   
   private var leadingConstant: CGFloat {
@@ -109,14 +114,18 @@ class AdaptVotingGearView: UIView {
   
   override func updateConstraints() {
     super.updateConstraints()
-    self.layoutSubviews()
+    reloadLayouts()
   }
   
   func setup() {
     Bundle.main.loadNibNamed("AdaptVotingGearView", owner: self, options: nil)
     addSubview(contentView)
-    contentView.frame = self.bounds
+    contentView.frame = bounds
     contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    collectionHome.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    collectionTie.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    collectionGear.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    collectionAway.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     collectionHome.register(UINib(nibName: "AdaptVotingLogoCell", bundle: nil), forCellWithReuseIdentifier: "AdaptVotingLogoCell")
     collectionHome.register(UINib(nibName: "AdaptVotingPointsCell", bundle: nil), forCellWithReuseIdentifier: "AdaptVotingPointsCell")
     collectionTie.register(UINib(nibName: "AdaptVotingLogoCell", bundle: nil), forCellWithReuseIdentifier: "AdaptVotingLogoCell")
@@ -152,103 +161,96 @@ class AdaptVotingGearView: UIView {
   
   func selectingAway(expansionRatio: CGFloat, alpha: CGFloat) {
     self.expansionRatio = expansionRatio
-    self.constraintRatioHomeToAway = self.constraintRatioHomeToAway.with(multiplier: expansionRatio.clamped(to: self.minimumRatio...self.maximumRatio))
-    self.constraintRatioHomeToAway.priority = UILayoutPriority.defaultHigh
-    self.constraintRatioAwayToHome = self.constraintRatioAwayToHome.with(multiplier: 1)
-    self.constraintRatioAwayToHome.priority = UILayoutPriority.defaultLow
-
-    self.constraintCollectionGearLeading.constant = self.bounds.width * self.leadingConstant
-    self.updateConstraints()
-    UIView.animate(withDuration: 0.3) {
-      self.collectionGear.alpha = alpha
-      self.collectionHome.alpha = alpha
-      self.collectionTie.alpha = self.canTie ? alpha:0.0
-      self.collectionAway.alpha = 0.0
-      self.constraintCollectionGearHeight.constant = self.collectionAway.frame.height * alpha.clamped(to: 0.0...1.0)
-    }
+    constraintRatioHomeToAway = constraintRatioHomeToAway.with(multiplier: expansionRatio)
+    constraintRatioHomeToAway.priority = UILayoutPriority.defaultHigh
+    constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: 1)
+    constraintRatioAwayToHome.priority = UILayoutPriority.defaultLow
+    constraintCollectionGearLeading.constant = bounds.width * leadingConstant
+    collectionGear.alpha = alpha
+    collectionHome.alpha = alpha
+    collectionTie.alpha = canTie ? alpha:0.0
+    collectionAway.alpha = 0.0
+    constraintHomeHeight = constraintHomeHeight.with(multiplier: heightConstant)
+    constraintCollectionGearHeight.constant = collectionAway.frame.height * alpha.clamped(to: 0.0...1.0)
+    reloadLayouts()
   }
   
   func selectingHome(expansionRatio: CGFloat, alpha: CGFloat) {
     self.expansionRatio = expansionRatio
-    self.constraintRatioAwayToHome = self.constraintRatioAwayToHome.with(multiplier: expansionRatio.clamped(to: self.minimumRatio...self.maximumRatio))
-    self.constraintRatioAwayToHome.priority = UILayoutPriority.defaultHigh
-    self.constraintRatioHomeToAway = self.constraintRatioHomeToAway.with(multiplier: 1)
-    self.constraintRatioHomeToAway.priority = UILayoutPriority.defaultLow
-
-    self.constraintCollectionGearLeading.constant = 0.0
-    self.updateConstraints()
-    UIView.animate(withDuration: 0.3) {
-      self.collectionGear.alpha = alpha
-      self.collectionAway.alpha = alpha
-      self.collectionTie.alpha = self.canTie ? alpha:0.0
-      self.collectionHome.alpha = 0.0
-      self.constraintCollectionGearHeight.constant = self.collectionHome.frame.height * alpha.clamped(to: 0.0...1.0)
-    }
+    constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: expansionRatio)
+    constraintRatioAwayToHome.priority = UILayoutPriority.defaultHigh
+    constraintRatioHomeToAway = constraintRatioHomeToAway.with(multiplier: 1)
+    constraintRatioHomeToAway.priority = UILayoutPriority.defaultLow
+    constraintCollectionGearLeading.constant = 0.0
+    collectionGear.alpha = alpha
+    collectionAway.alpha = alpha
+    collectionTie.alpha = canTie ? alpha:0.0
+    collectionHome.alpha = 0.0
+    constraintHomeHeight = constraintHomeHeight.with(multiplier: heightConstant)
+    constraintCollectionGearHeight.constant = viewHome.frame.height * alpha.clamped(to: 0.0...1.0)
+    reloadLayouts()
   }
   
   func selectedNone() {
-    self.constraintCollectionGear.constant = self.bigSizeConstant
-    self.constraintCollectionGearLeading.constant = 0.0
-    self.constraintCollectionGearHeight.constant = 0.0
-    self.constraintRatioHomeToAway = self.constraintRatioHomeToAway.with(multiplier: 1.0)
-    self.constraintRatioAwayToHome = self.constraintRatioAwayToHome.with(multiplier: 1.0)
-    self.constraintRatioHomeToAway.priority = .defaultHigh
-    self.constraintRatioAwayToHome.priority = .defaultHigh
-    self.constraintTie.constant = self.tieNormalSizeConstant
-    self.updateConstraints()
-    UIView
-      .animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-        self.collectionHome.alpha = 0.0
-        self.collectionTie.alpha = 0.0
-        self.collectionAway.alpha = 0.0
-        self.collectionGear.alpha = 0.0
-        
-      }, completion: { (completion) in
-        
-      })
+    expansionRatio = minimumRatio
+    constraintCollectionGear.constant = bigSizeConstant
+    constraintCollectionGearLeading.constant = 0.0
+    constraintCollectionGearHeight.constant = 0.0
+    constraintRatioHomeToAway = constraintRatioHomeToAway.with(multiplier: 1.0)
+    constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: 1.0)
+    constraintRatioHomeToAway.priority = .defaultHigh
+    constraintRatioAwayToHome.priority = .defaultHigh
+    constraintTie.constant = tieNormalSizeConstant
+    constraintHomeHeight = constraintHomeHeight.with(multiplier: 1.0)
+    collectionHome.alpha = 0.0
+    collectionTie.alpha = 0.0
+    collectionAway.alpha = 0.0
+    collectionGear.alpha = 0.0
+    reloadLayouts()
   }
   
   
   func selectedAway() {
-    self.selectingAway(expansionRatio: self.minimumRatio, alpha: 1.0)
+    expansionRatio = minimumRatio
+    constraintRatioHomeToAway = constraintRatioHomeToAway.with(multiplier: expansionRatio)
+    constraintCollectionGearLeading.constant = bounds.width * leadingConstant
+    collectionGear.alpha = 1.0
+    collectionHome.alpha = 1.0
+    collectionTie.alpha = canTie ? 1.0:0.0
+    collectionAway.alpha = 0.0
+    constraintHomeHeight = constraintHomeHeight.with(multiplier: heightConstant)
+    constraintCollectionGearHeight.constant = collectionAway.frame.height
+    reloadLayouts()
   }
   
   func selectedHome() {
-    self.selectingHome(expansionRatio: self.minimumRatio, alpha: 1.0)
+    expansionRatio = minimumRatio
+    constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: expansionRatio)
+    collectionGear.alpha = 1.0
+    collectionAway.alpha = 1.0
+    collectionTie.alpha = canTie ? 1.0:0.0
+    collectionHome.alpha = 0.0
+    constraintHomeHeight = constraintHomeHeight.with(multiplier: heightConstant)
+    constraintCollectionGearHeight.constant = viewHome.frame.height
+    reloadLayouts()
   }
   
   private func selectedTie() {
-    
-    //    UIView.animate(withDuration: 0.1, animations: {
-    //
-    //     // self.constraintCollectionAway = self.constraintCollectionAway.with(multiplier: self.smallSizeRatio)
-    //
-    //      self.constraintCollectionHome = self.constraintCollectionHome.with(multiplier: self.smallSizeRatio)
-    //
-    //      self.constraintCollectionGear = self.constraintCollectionGear.with(multiplier: self.bigSizeRatio)
-    //
-    //      self.constraintCollectionGearLeading.constant = self.bounds.width * self.smallSizeRatio
-    //
-    //      self.updateConstraints()
-    //
-    //    }) { (completed) in
-    //
-    //      UIView
-    //        .animate(withDuration: 0.2, delay: 0.1, options: [], animations: {
-    //          self.collectionHome.alpha = 1.0
-    //          self.collectionAway.alpha = 1.0
-    //          self.collectionTie.alpha = 0.0
-    //          self.collectionGear.alpha = 1.0
-    //          self.collectionGear.frame = self.collectionTie.frame
-    //
-    //        }, completion: { (completion) in
-    //
-    //        })
-    //    }
-    
+    expansionRatio = minimumRatio
+    constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: 1.0)
+    constraintRatioHomeToAway = constraintRatioHomeToAway.with(multiplier: 1.0)
+    constraintRatioHomeToAway.priority = .defaultHigh
+    constraintRatioAwayToHome.priority = .defaultHigh
+    constraintTie.constant = bigSizeConstant
+    constraintCollectionGearLeading.constant = bounds.width * smallSizeRatio
+    collectionGear.alpha = 1.0
+    collectionAway.alpha = 1.0
+    collectionTie.alpha = 0.0
+    collectionHome.alpha = 1.0
+    constraintHomeHeight = constraintHomeHeight.with(multiplier: heightConstant)
+    constraintCollectionGearHeight.constant = viewTie.frame.height
+    reloadLayouts()
   }
-  
-  
 }
 
 
@@ -258,12 +260,21 @@ extension AdaptVotingGearView: UICollectionViewDelegate, UICollectionViewDataSou
     return 4
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print(indexPath.row)
+  }
+  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdaptVotingPointsCell", for: indexPath)
     return cell
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets (top: 0, left: 0, bottom: 0, right: 0)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+    UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.width, height: collectionView.frame.width)
   }
   
@@ -271,19 +282,15 @@ extension AdaptVotingGearView: UICollectionViewDelegate, UICollectionViewDataSou
 
 extension AdaptVotingGearView {
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    DispatchQueue.main.async {
-      self.reloadLayouts()
-    }
-  }
-  
   private func reloadLayouts() {
-    self.collectionHome.collectionViewLayout.invalidateLayout()
-    self.collectionAway.collectionViewLayout.invalidateLayout()
-    self.collectionTie.collectionViewLayout.invalidateLayout()
-    self.collectionGear.collectionViewLayout.invalidateLayout()
-
+    collectionTie.layoutIfNeeded()
+    collectionGear.layoutIfNeeded()
+    collectionHome.layoutIfNeeded()
+    collectionAway.layoutIfNeeded()
+    collectionHome.collectionViewLayout.invalidateLayout()
+    collectionAway.collectionViewLayout.invalidateLayout()
+    collectionTie.collectionViewLayout.invalidateLayout()
+    collectionGear.collectionViewLayout.invalidateLayout()
   }
 }
 

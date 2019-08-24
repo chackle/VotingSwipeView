@@ -30,7 +30,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
   
   func setup() {
     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(VotingCollectionViewCell.handlePan(sender:)))
-    self.panGestureView.addGestureRecognizer(gestureRecognizer)
+    self.contentView.addGestureRecognizer(gestureRecognizer)
     let color = UIColor(red: 255/255.0, green: 155/255.0, blue: 0, alpha: 1.0)
     self.homeView.setup(withAngledSide: .right, andFillColor: color)
     self.awayView.setup(withAngledSide: .left, andFillColor: color)
@@ -109,7 +109,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
       self.currentSettledSide = self.currentViewPosition()
       switch self.currentSettledSide {
       case .left:
-        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {
           self.homeView.alpha = 1
           self.awayView.alpha = 0
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
@@ -118,12 +118,12 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: 1)
           self.adaptVotingGearView.selectedHome()
+          self.adaptVotingGearView.layoutIfNeeded()
           self.panGestureView.layoutIfNeeded()
-
         }, completion: nil)
         break
       case .neutral:
-        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {
           self.homeView.alpha = 1
           self.awayView.alpha = 1
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
@@ -132,12 +132,12 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: self.lowestHeightRatio)
           self.adaptVotingGearView.selectedNone()
+          self.adaptVotingGearView.layoutIfNeeded()
           self.panGestureView.layoutIfNeeded()
-          
         }, completion: nil)
         break
       case .right:
-        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {
           self.homeView.alpha = 0
           self.awayView.alpha = 1
           self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: self.lowestWidthRatio)
@@ -146,6 +146,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultLow
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: 1)
           self.adaptVotingGearView.selectedAway()
+          self.adaptVotingGearView.layoutIfNeeded()
           self.panGestureView.layoutIfNeeded()
 
         }, completion: nil)
@@ -179,3 +180,13 @@ enum Direction {
   case neutral
 }
 
+
+extension VotingCollectionViewCell: UIGestureRecognizerDelegate {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    return true
+  }
+  
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
+  }
+}
