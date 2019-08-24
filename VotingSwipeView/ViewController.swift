@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
   @IBOutlet weak var collectionView: VotingCollectionView!
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
@@ -22,5 +23,11 @@ class ViewController: UIViewController {
     self.collectionView.contentInset = UIEdgeInsets(top: -48, left: 0, bottom: -20, right: 0)
     self.collectionView.setup()
   }
+  
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    return touch.view == collectionView
+  }
+  
+  
 }
 

@@ -16,6 +16,12 @@
 		54105271230C108F0046FB64 /* VotingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */; };
 		54105272230C108F0046FB64 /* VotingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */; };
 		54105274230D59CE0046FB64 /* TrapeziumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54105273230D59CE0046FB64 /* TrapeziumView.swift */; };
+		7FF28002230FF2190019E749 /* AdaptVotingPointsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF27FF4230FF2190019E749 /* AdaptVotingPointsCell.xib */; };
+		7FF28004230FF2190019E749 /* AdaptVotingGearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF27FF6230FF2190019E749 /* AdaptVotingGearView.swift */; };
+		7FF28006230FF2190019E749 /* AdaptVotingLogoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF27FF8230FF2190019E749 /* AdaptVotingLogoCell.xib */; };
+		7FF28007230FF2190019E749 /* AdaptVotingLogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF27FF9230FF2190019E749 /* AdaptVotingLogoCell.swift */; };
+		7FF2800A230FF2190019E749 /* AdaptVotingPointsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF27FFE230FF2190019E749 /* AdaptVotingPointsCell.swift */; };
+		7FF2800B230FF2190019E749 /* AdaptVotingGearView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF27FFF230FF2190019E749 /* AdaptVotingGearView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,12 @@
 		5410526F230C108F0046FB64 /* VotingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingCollectionViewCell.swift; sourceTree = "<group>"; };
 		54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VotingCollectionViewCell.xib; sourceTree = "<group>"; };
 		54105273230D59CE0046FB64 /* TrapeziumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrapeziumView.swift; sourceTree = "<group>"; };
+		7FF27FF4230FF2190019E749 /* AdaptVotingPointsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdaptVotingPointsCell.xib; sourceTree = "<group>"; };
+		7FF27FF6230FF2190019E749 /* AdaptVotingGearView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptVotingGearView.swift; sourceTree = "<group>"; };
+		7FF27FF8230FF2190019E749 /* AdaptVotingLogoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdaptVotingLogoCell.xib; sourceTree = "<group>"; };
+		7FF27FF9230FF2190019E749 /* AdaptVotingLogoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptVotingLogoCell.swift; sourceTree = "<group>"; };
+		7FF27FFE230FF2190019E749 /* AdaptVotingPointsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptVotingPointsCell.swift; sourceTree = "<group>"; };
+		7FF27FFF230FF2190019E749 /* AdaptVotingGearView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdaptVotingGearView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 		54105257230C0FBD0046FB64 /* VotingSwipeView */ = {
 			isa = PBXGroup;
 			children = (
+				7FF27FF3230FF2190019E749 /* AdaptVotingGearView */,
 				5410526A230C10430046FB64 /* Views */,
 				54105258230C0FBD0046FB64 /* AppDelegate.swift */,
 				5410525A230C0FBD0046FB64 /* ViewController.swift */,
@@ -98,6 +111,19 @@
 				54105270230C108F0046FB64 /* VotingCollectionViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7FF27FF3230FF2190019E749 /* AdaptVotingGearView */ = {
+			isa = PBXGroup;
+			children = (
+				7FF27FF4230FF2190019E749 /* AdaptVotingPointsCell.xib */,
+				7FF27FF6230FF2190019E749 /* AdaptVotingGearView.swift */,
+				7FF27FF8230FF2190019E749 /* AdaptVotingLogoCell.xib */,
+				7FF27FF9230FF2190019E749 /* AdaptVotingLogoCell.swift */,
+				7FF27FFE230FF2190019E749 /* AdaptVotingPointsCell.swift */,
+				7FF27FFF230FF2190019E749 /* AdaptVotingGearView.xib */,
+			);
+			path = AdaptVotingGearView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +188,9 @@
 				54105260230C0FBF0046FB64 /* Assets.xcassets in Resources */,
 				5410525E230C0FBD0046FB64 /* Main.storyboard in Resources */,
 				54105272230C108F0046FB64 /* VotingCollectionViewCell.xib in Resources */,
+				7FF28006230FF2190019E749 /* AdaptVotingLogoCell.xib in Resources */,
+				7FF28002230FF2190019E749 /* AdaptVotingPointsCell.xib in Resources */,
+				7FF2800B230FF2190019E749 /* AdaptVotingGearView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,9 +202,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5410525B230C0FBD0046FB64 /* ViewController.swift in Sources */,
+				7FF28004230FF2190019E749 /* AdaptVotingGearView.swift in Sources */,
 				54105259230C0FBD0046FB64 /* AppDelegate.swift in Sources */,
+				7FF2800A230FF2190019E749 /* AdaptVotingPointsCell.swift in Sources */,
 				5410526D230C10600046FB64 /* VotingCollectionView.swift in Sources */,
 				54105271230C108F0046FB64 /* VotingCollectionViewCell.swift in Sources */,
+				7FF28007230FF2190019E749 /* AdaptVotingLogoCell.swift in Sources */,
 				54105274230D59CE0046FB64 /* TrapeziumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

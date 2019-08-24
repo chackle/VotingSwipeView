@@ -12,16 +12,20 @@ class VotingCollectionViewCell: UICollectionViewCell {
 
   private let lowestWidthRatio = CGFloat(0.3)
   private let lowestHeightRatio = CGFloat(0.25)
-  
+  @IBOutlet weak var adaptVotingGearView: AdaptVotingGearView!
+
   @IBOutlet weak var panGestureView: UIView!
+  
   @IBOutlet weak var homeView: TrapeziumView!
   @IBOutlet weak var awayView: TrapeziumView!
   @IBOutlet weak var leftSideWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var rightSideWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var centerViewHeightConstraint: NSLayoutConstraint!
+  
   private var pageWidth: CGFloat {
     return self.contentView.bounds.width
   }
+  
   private var currentSettledSide = Direction.neutral
   
   func setup() {
@@ -56,29 +60,46 @@ class VotingCollectionViewCell: UICollectionViewCell {
     let absoluteXTranslation = abs(xTranslation)
     let expansionRatio = 1 - (absoluteXTranslation / (self.pageWidth + self.lowestWidthRatio * self.pageWidth))
     let heightExpansionRatio = self.lowestHeightRatio + (absoluteXTranslation / self.pageWidth)
-    let midXPoint = self.awayView.frame.origin.x
-    let homeAlpha = (midXPoint / (self.pageWidth / 2)) - (1 - (midXPoint - (midXPoint * self.lowestWidthRatio)) / (self.pageWidth - self.pageWidth * self.lowestWidthRatio))
-    let awayAlpha = 1 - ((midXPoint / (self.pageWidth / 2)) - (1 - (midXPoint - (midXPoint * self.lowestWidthRatio)) / (self.pageWidth - self.pageWidth * self.lowestWidthRatio)) * 2)
+    
+   // let location = sender.location(in: self.panGestureView)
+   // let percentage = 1.0 - (location.x / (self.panGestureView.bounds.size.width / 2))
+
+    //print(percentage)
+    //let midXPoint = self.awayView.frame.origin.x
+
+   // let homeAlpha = 1 - abs(((midXPoint / (self.pageWidth / 2)) - (1 - (midXPoint - (midXPoint * self.lowestWidthRatio)) / (self.pageWidth - self.pageWidth * (self.lowestWidthRatio)) * 2)))
+    
+    //let awayAlpha = 1 - abs(((midXPoint / (self.pageWidth / 2)) - (1 - (midXPoint - (midXPoint * self.lowestWidthRatio)) / (self.pageWidth - self.pageWidth * self.lowestWidthRatio)) * 2))
+    
+    ///print("home \(homeAlpha) - awayAlpha \(awayAlpha)")
+
     switch sender.state {
     case .changed:
       switch direction {
       case .left:
-        self.homeView.alpha = homeAlpha
+        //print(expansionRatio)
+        let alpha = (expansionRatio - lowestWidthRatio).clamped(to: 0...1)
+        self.homeView.alpha = alpha
         self.awayView.alpha = 1
         self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: expansionRatio)
         self.leftSideWidthConstraint.priority = UILayoutPriority.defaultHigh
         self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: 1)
         self.rightSideWidthConstraint.priority = UILayoutPriority.defaultLow
         self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: heightExpansionRatio)
+        self.adaptVotingGearView.selectingAway(expansionRatio: expansionRatio, alpha: 1 - alpha)
+
         break
       case .right:
+        let alpha = (expansionRatio - lowestWidthRatio).clamped(to: 0...1)
         self.homeView.alpha = 1
-        self.awayView.alpha = awayAlpha
+        self.awayView.alpha = alpha
         self.leftSideWidthConstraint = self.leftSideWidthConstraint.with(multiplier: 1)
         self.leftSideWidthConstraint.priority = UILayoutPriority.defaultLow
         self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: expansionRatio)
         self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
         self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: heightExpansionRatio)
+        self.adaptVotingGearView.selectingHome(expansionRatio: expansionRatio, alpha: 1 - alpha)
+
         break
       case .neutral:
         break
@@ -96,7 +117,9 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: self.lowestWidthRatio)
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: 1)
+          self.adaptVotingGearView.selectedHome()
           self.panGestureView.layoutIfNeeded()
+
         }, completion: nil)
         break
       case .neutral:
@@ -108,7 +131,9 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: 1)
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultHigh
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: self.lowestHeightRatio)
+          self.adaptVotingGearView.selectedNone()
           self.panGestureView.layoutIfNeeded()
+          
         }, completion: nil)
         break
       case .right:
@@ -120,7 +145,9 @@ class VotingCollectionViewCell: UICollectionViewCell {
           self.rightSideWidthConstraint = self.rightSideWidthConstraint.with(multiplier: 1)
           self.rightSideWidthConstraint.priority = UILayoutPriority.defaultLow
           self.centerViewHeightConstraint = self.centerViewHeightConstraint.with(multiplier: 1)
+          self.adaptVotingGearView.selectedAway()
           self.panGestureView.layoutIfNeeded()
+
         }, completion: nil)
         break
       }
@@ -143,35 +170,7 @@ class VotingCollectionViewCell: UICollectionViewCell {
       return Direction.neutral
     }
   }
-}
 
-extension NSLayoutConstraint {
-  /**
-   Change multiplier constraint
-   
-   - parameter multiplier: CGFloat
-   - returns: NSLayoutConstraint
-   */
-  func with(multiplier:CGFloat) -> NSLayoutConstraint {
-    
-    NSLayoutConstraint.deactivate([self])
-    
-    let newConstraint = NSLayoutConstraint(
-      item: firstItem as AnyObject,
-      attribute: firstAttribute,
-      relatedBy: relation,
-      toItem: secondItem,
-      attribute: secondAttribute,
-      multiplier: multiplier,
-      constant: constant)
-    
-    newConstraint.priority = priority
-    newConstraint.shouldBeArchived = self.shouldBeArchived
-    newConstraint.identifier = self.identifier
-    
-    NSLayoutConstraint.activate([newConstraint])
-    return newConstraint
-  }
 }
 
 enum Direction {

@@ -47,13 +47,21 @@
                                     <constraint firstAttribute="bottom" secondItem="6PT-vW-ann" secondAttribute="bottom" id="teH-JX-1yW"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRf-bO-GTe" customClass="AdaptVotingGearView" customModule="VotingSwipeView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="381" height="385"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vh7-hy-hCT" firstAttribute="height" secondItem="LPM-aQ-b0C" secondAttribute="height" multiplier="0.25" id="6EF-dM-pOu"/>
+                            <constraint firstItem="TRf-bO-GTe" firstAttribute="leading" secondItem="LPM-aQ-b0C" secondAttribute="leading" id="Ecu-6R-lji"/>
                             <constraint firstItem="Vh7-hy-hCT" firstAttribute="centerY" secondItem="LPM-aQ-b0C" secondAttribute="centerY" id="Fn4-k1-weD"/>
                             <constraint firstItem="Vh7-hy-hCT" firstAttribute="leading" secondItem="LPM-aQ-b0C" secondAttribute="leading" id="IAe-VS-Sqn"/>
                             <constraint firstAttribute="trailing" secondItem="Vh7-hy-hCT" secondAttribute="trailing" id="JOg-Ul-xVY"/>
+                            <constraint firstAttribute="bottom" secondItem="TRf-bO-GTe" secondAttribute="bottom" id="NHF-FD-ngG"/>
+                            <constraint firstItem="TRf-bO-GTe" firstAttribute="top" secondItem="LPM-aQ-b0C" secondAttribute="top" id="TCT-cb-bkm"/>
+                            <constraint firstAttribute="trailing" secondItem="TRf-bO-GTe" secondAttribute="trailing" id="xPr-Fb-LW0"/>
                         </constraints>
                     </view>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZ1-ce-dI7">
@@ -95,6 +103,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="381" height="385"/>
             <connections>
+                <outlet property="adaptVotingGearView" destination="TRf-bO-GTe" id="nch-bW-TLb"/>
                 <outlet property="awayView" destination="sdP-Rm-CbT" id="ms8-9d-49S"/>
                 <outlet property="centerViewHeightConstraint" destination="6EF-dM-pOu" id="aRg-kV-SYO"/>
                 <outlet property="homeView" destination="6PT-vW-ann" id="7Ua-Fy-IeK"/>
