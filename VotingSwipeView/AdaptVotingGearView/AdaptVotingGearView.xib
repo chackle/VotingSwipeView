@@ -28,9 +28,14 @@
                 <outlet property="imageViewHomeLogo" destination="OTh-Eo-5Tu" id="425-F4-RQB"/>
                 <outlet property="imageViewTieLogo" destination="9Kx-bR-G9l" id="Nv6-05-xfB"/>
                 <outlet property="labelAwayName" destination="cPg-Gv-H52" id="WvV-ca-AEH"/>
+                <outlet property="labelAwayPoints" destination="1IF-kH-Oga" id="leq-Ot-K8p"/>
                 <outlet property="labelHomeName" destination="hAn-Kz-w12" id="DF0-BH-dsP"/>
+                <outlet property="labelHomePoints" destination="cVf-Tx-u1c" id="idW-nW-J4X"/>
                 <outlet property="labelTieName" destination="zpt-qc-fkY" id="ts7-DA-O2X"/>
                 <outlet property="labelTiePoints" destination="Onh-H2-Qyk" id="bMF-f6-5eb"/>
+                <outlet property="pressableViewAwayPoints" destination="ywz-EB-mWN" id="DHf-tF-hiq"/>
+                <outlet property="pressableViewHomePoints" destination="dtb-eh-ItZ" id="RaZ-f2-qxS"/>
+                <outlet property="pressableViewTiePoints" destination="ChI-Ld-msI" id="iI4-kP-Mvf"/>
                 <outlet property="viewAway" destination="xkc-vq-6U9" id="Dcf-k5-mfO"/>
                 <outlet property="viewGear" destination="WeJ-Lh-5rD" id="fBy-xb-UNR"/>
                 <outlet property="viewHome" destination="gBu-1s-uJG" id="w1K-iQ-WEy"/>

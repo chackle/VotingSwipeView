@@ -32,6 +32,9 @@ class AdaptVotingGearView: UIView {
   @IBOutlet weak var imageViewTieLogo: UIImageView!
   @IBOutlet weak var imageViewAwayLogo: UIImageView!
   
+  @IBOutlet weak var pressableViewHomePoints: UIView!
+  @IBOutlet weak var pressableViewAwayPoints: UIView!
+  @IBOutlet weak var pressableViewTiePoints: UIView!
   @IBOutlet weak var labelHomePoints: UILabel!
   @IBOutlet weak var labelAwayPoints: UILabel!
   @IBOutlet weak var labelTiePoints: UILabel!
