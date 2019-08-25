@@ -20,7 +20,6 @@ class AdaptVotingGearView: UIView {
   @IBOutlet var contentView: UIView!
   
   @IBOutlet weak var collectionGear: UICollectionView!
-  
   @IBOutlet weak var collectionHome: UICollectionView!
   @IBOutlet weak var collectionTie: UICollectionView!
   @IBOutlet weak var collectionAway: UICollectionView!
@@ -34,9 +33,8 @@ class AdaptVotingGearView: UIView {
   @IBOutlet weak var imageViewAwayLogo: UIImageView!
   
   @IBOutlet weak var labelHomePoints: UILabel!
-  @IBOutlet weak var labelTiePoints: UILabel!
   @IBOutlet weak var labelAwayPoints: UILabel!
-  
+  @IBOutlet weak var labelTiePoints: UILabel!
 
   @IBOutlet weak var constraintCollectionGear: NSLayoutConstraint!
   @IBOutlet weak var constraintCollectionGearLeading: NSLayoutConstraint!
@@ -82,7 +80,7 @@ class AdaptVotingGearView: UIView {
   }
   
   private var bigSizeConstant: CGFloat {
-    return bounds.width * bigSizeRatio
+    return (bounds.width * bigSizeRatio)
   }
   
   private var normalSizeRatio: CGFloat  {
@@ -90,7 +88,7 @@ class AdaptVotingGearView: UIView {
   }
   
   private var bigSizeRatio: CGFloat  {
-    return (canTie ? 0.45:0.75)
+    return (canTie ? 0.45:0.8)
   }
   
   private var smallSizeRatio: CGFloat {
@@ -166,7 +164,6 @@ class AdaptVotingGearView: UIView {
   
   func selectingAway(expansionRatio: CGFloat, alpha: CGFloat) {
     self.expansionRatio = expansionRatio
-    print(expansionRatio)
     constraintRatioHomeToAway = constraintRatioHomeToAway.with(multiplier: expansionRatio.clamped(to: smallSizeRatio...bigSizeRatio))
     constraintRatioHomeToAway.priority = UILayoutPriority.defaultHigh
     constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: 1)
@@ -228,6 +225,7 @@ class AdaptVotingGearView: UIView {
   func selectedHome() {
     expansionRatio = minimumRatio
     constraintRatioAwayToHome = constraintRatioAwayToHome.with(multiplier: expansionRatio)
+    constraintCollectionGearLeading.constant = 0.0
     collectionGear.alpha = 1.0
     collectionAway.alpha = 1.0
     collectionTie.alpha = canTie ? 1.0:0.0
@@ -283,14 +281,14 @@ extension AdaptVotingGearView: UICollectionViewDelegate, UICollectionViewDataSou
 extension AdaptVotingGearView {
   
   private func reloadLayouts() {
-    collectionTie.layoutIfNeeded()
-    collectionGear.layoutIfNeeded()
-    collectionHome.layoutIfNeeded()
-    collectionAway.layoutIfNeeded()
-    collectionHome.collectionViewLayout.invalidateLayout()
-    collectionAway.collectionViewLayout.invalidateLayout()
-    collectionTie.collectionViewLayout.invalidateLayout()
-    collectionGear.collectionViewLayout.invalidateLayout()
+//    collectionTie.layoutIfNeeded()
+//    collectionGear.layoutIfNeeded()
+//    collectionHome.layoutIfNeeded()
+//    collectionAway.layoutIfNeeded()
+//    collectionHome.collectionViewLayout.invalidateLayout()
+//    collectionAway.collectionViewLayout.invalidateLayout()
+//    collectionTie.collectionViewLayout.invalidateLayout()
+//    collectionGear.collectionViewLayout.invalidateLayout()
   }
 }
 

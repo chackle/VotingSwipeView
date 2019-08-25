@@ -143,7 +143,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="Nm3-pg-EPe"/>
                             </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="PkX-eh-fAD">
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PkX-eh-fAD">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -248,7 +248,7 @@
                 <constraint firstItem="9Kx-bR-G9l" firstAttribute="top" secondItem="zpt-qc-fkY" secondAttribute="bottom" id="m7a-wU-yfe"/>
                 <constraint firstItem="9Kx-bR-G9l" firstAttribute="centerY" secondItem="OTh-Eo-5Tu" secondAttribute="centerY" id="sPs-Q3-aZj"/>
                 <constraint firstItem="hAn-Kz-w12" firstAttribute="centerX" secondItem="OTh-Eo-5Tu" secondAttribute="centerX" id="se3-GM-mq9"/>
-                <constraint firstItem="WeJ-Lh-5rD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uwc-nl-6SN"/>
+                <constraint firstItem="WeJ-Lh-5rD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uwc-nl-6SN"/>
                 <constraint firstItem="Hyz-W4-RVl" firstAttribute="width" secondItem="xkc-vq-6U9" secondAttribute="width" multiplier="0.6" priority="750" id="zFd-f7-v7T"/>
                 <constraint firstItem="xkc-vq-6U9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hyz-W4-RVl" secondAttribute="bottom" id="zf1-z7-klK"/>
             </constraints>
